@@ -1,4 +1,4 @@
-# C++ Assignments - AIDS (ИИНоД)
+# C++ Assignments - (ИИНоД)
 
 ## Student Information
 - **Name**: Егор Кадомцев
