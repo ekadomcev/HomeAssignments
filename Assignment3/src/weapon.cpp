@@ -4,25 +4,31 @@
 
 #include "weapon.h"
 
-namespace tf {
+namespace tf
+{
 
 Weapon::Weapon(unsigned int damage, unsigned int ammo) : _damage(damage), _ammo(ammo) {}
 
-unsigned int Weapon::getDamage() const {
+unsigned int Weapon::getDamage() const
+{
     return _damage;
 }
 
-unsigned int Weapon::getAmmo() const {
+unsigned int Weapon::getAmmo() const
+{
     return _ammo;
 }
 
-void Weapon::fire() {
-    if (_ammo > 0) {
+void Weapon::fire()
+{
+    if (_ammo > 0)
+    {
         _ammo--;
     }
 }
 
-void Weapon::reload(unsigned int ammo) {
+void Weapon::reload(unsigned int ammo)
+{
     _ammo += ammo;
 }
 
