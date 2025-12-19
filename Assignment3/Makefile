@@ -2,7 +2,7 @@ PROJECT = transformers
 TEST_PROJECT = test_transformers
 
 CXX = g++
-CXXFLAGS = -Wall -Wextra -Isrc
+CXXFLAGS = -Werror -Wpedantic -Wall -Isrc
 LDFLAGS = 
 GTEST_LIBS = -lgtest -lgtest_main -pthread
 

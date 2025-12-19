@@ -4,15 +4,18 @@
 
 #include "pilot.h"
 
-namespace tf {
+namespace tf
+{
 
 Pilot::Pilot(const std::string& name) : _name(name) {}
 
-std::string Pilot::getName() const {
+std::string Pilot::getName() const
+{
     return _name;
 }
 
-void Pilot::command() {
+void Pilot::command()
+{
     return;
 }
 

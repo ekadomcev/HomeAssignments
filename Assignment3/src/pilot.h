@@ -7,9 +7,11 @@
 
 #include <string>
 
-namespace tf {
+namespace tf
+{
 
-class Pilot {
+class Pilot
+{
 public:
     Pilot(const std::string& name);
     std::string getName() const;

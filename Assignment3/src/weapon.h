@@ -5,9 +5,11 @@
 #ifndef WEAPON_H
 #define WEAPON_H
 
-namespace tf {
+namespace tf
+{
 
-class Weapon {
+class Weapon
+{
 public:
     Weapon(unsigned int damage, unsigned int ammo);
     unsigned int getDamage() const;
