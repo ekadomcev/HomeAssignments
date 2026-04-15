@@ -167,6 +167,32 @@ int main()
         require_near(current, 1, "legacy mode switch keeps register");
     }
 
+    {
+        bool rad_on = true;
+        const double current = 0;
+        CerrCapture capture;
+
+        const double updated = process_line(current, rad_on, "12345678901");
+        require_near(updated, current, "oversized literal keeps register");
+        require_contains(
+            capture.str(),
+            "Too many decimal digits in argument: 12345678901",
+            "oversized literal reports a numeric parsing error");
+    }
+
+    {
+        bool rad_on = true;
+        const double current = 0;
+        CerrCapture capture;
+
+        const double updated = process_line(current, rad_on, "12x");
+        require_near(updated, current, "malformed literal keeps register");
+        require_contains(
+            capture.str(),
+            "Bad numeric argument: 12x",
+            "malformed literal reports a numeric parsing error");
+    }
+
     std::cout << "All calculator tests passed.\n";
     return 0;
 }

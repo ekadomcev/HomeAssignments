@@ -1,5 +1,6 @@
 #include "calc.hpp"
 
+#include <algorithm>
 #include <cctype>
 #include <cmath>
 #include <iostream>
@@ -282,6 +283,24 @@ bool parse_number(const std::string& token, double& value, std::string& error)
     return true;
 }
 
+bool looks_like_number_token(const std::string& token)
+{
+    if (token.empty()) {
+        return false;
+    }
+
+    std::size_t index = 0;
+    if (token[index] == '+' || token[index] == '-') {
+        ++index;
+    }
+
+    if (index == token.size()) {
+        return false;
+    }
+
+    return std::isdigit(static_cast<unsigned char>(token[index])) != 0 || token[index] == '.';
+}
+
 bool parse_number_or_report(const std::string& token, double& value)
 {
     std::string error;
@@ -470,6 +489,10 @@ double process_line_impl(const double current, bool& rad_on, const std::string& 
         }
         return literal;
     }
+    if (looks_like_number_token(tokens.front())) {
+        std::cerr << parse_error << std::endl;
+        return current;
+    }
 
     const Op op = parse_op_token(tokens.front());
     if (op == Op::Invalid) {
@@ -534,6 +557,6 @@ double process_line(const double current, bool& rad_on, const std::string& line)
 
 double process_line(const double current, const std::string& line)
 {
-    static bool rad_on = true;
+    thread_local bool rad_on = true;
     return process_line_impl(current, rad_on, line);
 }
