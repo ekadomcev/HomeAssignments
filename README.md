@@ -19,4 +19,3 @@ This repository contains home assignments for the C++ course at Saint Petersburg
 - [Term 2](Term2/)
   - [Assignment 1](Term2/Assignment1/) - ODR, linkage, and inline variables
   - [Assignment 2 AVL](Term2/Assignment2AVL/) - AVL tree on integers with manual memory management
-  - [Int128](Term2/Int128/) - Signed 128-bit integer and arithmetic expression hierarchy
