@@ -15,3 +15,5 @@ This repository contains home assignments for the C++ course at Saint Petersburg
 - [Assignment 2b](Assignment2b/) - RPN Calculator with custom stack
 - [Assignment 3](Assignment3/) - Transformers class hierarchy
 - [Assignment 5](Assignment5/) - Matrix template and Rational class
+- [Term2](Term2/)
+  - [Assignment 1](Term2/Assignment1/) - ODR, linkage, and inline variables
