@@ -1,5 +1,5 @@
-PROJECT = avl_demo
-TEST_PROJECT = test_avl_tree
+PROJECT = calc_demo
+TEST_PROJECT = test_calc
 
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -Wpedantic -Werror -Isrc
@@ -7,10 +7,10 @@ CXXFLAGS = -std=c++17 -Wall -Wextra -Wpedantic -Werror -Isrc
 BIN_DIR = bin
 OBJ_DIR = obj
 
-SRC = src/main.cpp src/AVLTree.cpp
+SRC = src/main.cpp src/calc.cpp
 OBJ = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 
-TEST_SRC = tests/test_avl_tree.cpp src/AVLTree.cpp
+TEST_SRC = tests/test_calc.cpp src/calc.cpp
 TEST_OBJ = $(TEST_SRC:%.cpp=$(OBJ_DIR)/%.o)
 
 .PHONY: all clean cleanall test

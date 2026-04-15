@@ -1,4 +1,4 @@
-# Term 2 Assignment 3 AVL
+# Term 2 Assignment 2 Calc
 
 ## Student Information
 - **Name**: Egor Kadomtsev
@@ -7,8 +7,8 @@
 - **University ID**: st116930
 
 ## Description
-This branch contains only the Term 2 AVL tree assignment for the C++ course at Saint Petersburg State University (SPbU).
+This branch contains only the Term 2 calculator assignment for the C++ course at Saint Petersburg State University (SPbU).
 
 ## Structure
 - [Term2](Term2/)
-  - [Assignment3AVL](Term2/Assignment3AVL/) - AVL tree on integers with manual memory management
+  - [Assignment2Calc](Term2/Assignment2Calc/) - calculator with trigonometric mode switching and fold bonus
