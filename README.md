@@ -17,5 +17,4 @@ This repository contains home assignments for the C++ course at Saint Petersburg
   - [Assignment 3](Term1/Assignment3/) - Transformers class hierarchy
   - [Assignment 5](Term1/Assignment5/) - Matrix template and Rational class
 - [Term 2](Term2/)
-  - [Assignment 1](Term2/Assignment1/) - ODR, linkage, and inline variables
   - [Int128](Term2/Int128/) - Signed 128-bit integer and arithmetic expression hierarchy
