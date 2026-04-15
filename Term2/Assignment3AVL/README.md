@@ -1,4 +1,4 @@
-# Assignment 2: AVL Tree
+# Assignment 3: AVL Tree
 
 ## Author
 Egor Kadomtsev, Group 25.B81-mm

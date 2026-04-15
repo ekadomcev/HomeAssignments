@@ -1,4 +1,4 @@
-# Term 2 Assignment 2 AVL
+# Term 2 Assignment 3 AVL
 
 ## Student Information
 - **Name**: Egor Kadomtsev
@@ -11,4 +11,4 @@ This branch contains only the Term 2 AVL tree assignment for the C++ course at S
 
 ## Structure
 - [Term2](Term2/)
-  - [Assignment2AVL](Term2/Assignment2AVL/) - AVL tree on integers with manual memory management
+  - [Assignment3AVL](Term2/Assignment3AVL/) - AVL tree on integers with manual memory management
