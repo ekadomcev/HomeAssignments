@@ -17,5 +17,4 @@ This repository contains home assignments for the C++ course at Saint Petersburg
   - [Assignment 3](Term1/Assignment3/) - Transformers class hierarchy
   - [Assignment 5](Term1/Assignment5/) - Matrix template and Rational class
 - [Term 2](Term2/)
-  - [Assignment 1](Term2/Assignment1/) - ODR, linkage, and inline variables
   - [Assignment 2 AVL](Term2/Assignment2AVL/) - AVL tree on integers with manual memory management
