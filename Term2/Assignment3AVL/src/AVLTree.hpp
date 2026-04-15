@@ -9,7 +9,8 @@ public:
     AVLTree() = default;
     AVLTree(const AVLTree& other);
     AVLTree(AVLTree&& other) noexcept;
-    AVLTree& operator=(AVLTree other) noexcept;
+    AVLTree& operator=(const AVLTree& other);
+    AVLTree& operator=(AVLTree&& other) noexcept;
 
     bool contains(int value) const;
     bool insert(int value);

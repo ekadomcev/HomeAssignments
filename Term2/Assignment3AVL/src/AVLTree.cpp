@@ -17,15 +17,32 @@ AVLTree::AVLTree(AVLTree&& other) noexcept
     other.size_ = 0;
 }
 
-AVLTree& AVLTree::operator=(AVLTree other) noexcept
+AVLTree& AVLTree::operator=(const AVLTree& other)
 {
-    swap(*this, other);
+    if (this != &other) {
+        AVLTree copy(other);
+        swap(*this, copy);
+    }
+
+    return *this;
+}
+
+AVLTree& AVLTree::operator=(AVLTree&& other) noexcept
+{
+    if (this != &other) {
+        destroy(root_);
+        root_ = other.root_;
+        size_ = other.size_;
+        other.root_ = nullptr;
+        other.size_ = 0;
+    }
+
     return *this;
 }
 
 bool AVLTree::contains(int value) const
 {
-    Node* current = root_;
+    const Node* current = root_;
     while (current != nullptr) {
         if (value < current->value) {
             current = current->left;

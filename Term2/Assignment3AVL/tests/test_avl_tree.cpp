@@ -3,6 +3,7 @@
 #include <set>
 #include <sstream>
 #include <string>
+#include <type_traits>
 #include <utility>
 #include <vector>
 
@@ -51,6 +52,13 @@ std::vector<int> asVector(const std::set<int>& values)
 
 int main()
 {
+    static_assert(
+        !std::is_nothrow_copy_assignable<AVLTree>::value,
+        "copy assignment should not be noexcept because cloning can allocate");
+    static_assert(
+        std::is_nothrow_move_assignable<AVLTree>::value,
+        "move assignment should remain noexcept");
+
     AVLTree emptyTree;
     require(emptyTree.empty(), "new tree is empty");
     require(emptyTree.size() == 0, "new tree has zero size");
