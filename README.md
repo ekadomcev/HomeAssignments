@@ -1,4 +1,4 @@
-# Term 2 Int128
+# Term 2 Assignment 3 Int128
 
 ## Student Information
 - **Name**: Egor Kadomtsev
@@ -7,8 +7,8 @@
 - **University ID**: st116930
 
 ## Description
-This branch contains only the Term 2 Int128 assignment for the C++ course at Saint Petersburg State University (SPbU).
+This branch contains only the Term 2 Assignment 3 Int128 solution for the C++ course at Saint Petersburg State University (SPbU).
 
 ## Structure
 - [Term2](Term2/)
-  - [Int128](Term2/Int128/) - Signed 128-bit integer and arithmetic expression hierarchy
+  - [Assignment3Int128](Term2/Assignment3Int128/) - Signed 128-bit integer and arithmetic expression hierarchy
