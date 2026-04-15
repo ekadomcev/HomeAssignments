@@ -24,7 +24,7 @@ public:
     Int128& operator+=(const Int128& other) noexcept;
     Int128& operator-=(const Int128& other) noexcept;
     Int128& operator*=(const Int128& other) noexcept;
-    Int128& operator/=(const Int128& other) noexcept;
+    Int128& operator/=(const Int128& other);
 
     [[nodiscard]] Int128 operator-() const noexcept;
 
@@ -38,7 +38,7 @@ public:
     friend Int128 operator+(Int128 lhs, const Int128& rhs) noexcept;
     friend Int128 operator-(Int128 lhs, const Int128& rhs) noexcept;
     friend Int128 operator*(Int128 lhs, const Int128& rhs) noexcept;
-    friend Int128 operator/(Int128 lhs, const Int128& rhs) noexcept;
+    friend Int128 operator/(Int128 lhs, const Int128& rhs);
 
     friend std::ostream& operator<<(std::ostream& out, const Int128& value);
 

@@ -1,8 +1,10 @@
 #include "int128.hpp"
 
+#include <cctype>
 #include <algorithm>
 #include <cmath>
 #include <ostream>
+#include <stdexcept>
 
 namespace {
 
@@ -20,6 +22,10 @@ Int128::Int128(int64_t value) noexcept
 }
 
 Int128::Int128(std::string_view text) {
+    if (text.empty()) {
+        throw std::invalid_argument("Int128 string is empty");
+    }
+
     bool negative = false;
     std::size_t index = 0;
 
@@ -28,14 +34,34 @@ Int128::Int128(std::string_view text) {
         index = 1;
     }
 
+    if (index == text.size()) {
+        throw std::invalid_argument("Int128 string has no digits");
+    }
+
     Int128 magnitude;
+    const Int128 ten(10);
+    const Int128 limit = negative ? min() : max();
+    Int128 limit_div_10;
+    Int128 limit_mod_10;
+    divmodUnsigned(limit, ten, limit_div_10, limit_mod_10);
 
     for (; index < text.size(); ++index) {
         const char digit = text[index];
+        if (std::isdigit(static_cast<unsigned char>(digit)) == 0) {
+            throw std::invalid_argument("Invalid Int128 digit");
+        }
+
+        const Int128 digit_value(static_cast<int64_t>(digit - '0'));
+        if (compareUnsigned(magnitude, limit_div_10) > 0 ||
+            (compareUnsigned(magnitude, limit_div_10) == 0 &&
+             compareUnsigned(digit_value, limit_mod_10) > 0)) {
+            throw std::out_of_range("Int128 value out of range");
+        }
+
         const Int128 previous = magnitude;
         magnitude = shiftLeftUnsigned(previous, 3);
         magnitude += shiftLeftUnsigned(previous, 1);
-        magnitude += Int128(static_cast<int64_t>(digit - '0'));
+        magnitude += digit_value;
     }
 
     const Int128 raw = negative ? negateRaw(magnitude) : magnitude;
@@ -128,7 +154,11 @@ Int128& Int128::operator*=(const Int128& other) noexcept {
     return *this;
 }
 
-Int128& Int128::operator/=(const Int128& other) noexcept {
+Int128& Int128::operator/=(const Int128& other) {
+    if (other.isZero()) {
+        throw std::domain_error("division by zero");
+    }
+
     const bool negative = isNegative() != other.isNegative();
     const Int128 left = isNegative() ? -(*this) : *this;
     const Int128 right = other.isNegative() ? -other : other;
@@ -191,7 +221,7 @@ Int128 operator*(Int128 lhs, const Int128& rhs) noexcept {
     return lhs;
 }
 
-Int128 operator/(Int128 lhs, const Int128& rhs) noexcept {
+Int128 operator/(Int128 lhs, const Int128& rhs) {
     lhs /= rhs;
     return lhs;
 }

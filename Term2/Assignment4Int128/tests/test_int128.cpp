@@ -3,6 +3,7 @@
 #include <iostream>
 #include <memory>
 #include <sstream>
+#include <stdexcept>
 #include <string>
 
 #include "../src/expression.hpp"
@@ -78,6 +79,31 @@ int main() {
     require(Int128(-10) < Int128(5), "signed comparison works");
     require(Int128("10000000000000000000") > Int128("9999999999999999999"), "large comparison works");
     require(Int128(42) != Int128(41), "inequality works");
+    require(Int128("+000123").str() == "123", "string constructor handles leading zeros and plus sign");
+
+    bool invalid_string_thrown = false;
+    try {
+        static_cast<void>(Int128("12x3"));
+    } catch (const std::invalid_argument&) {
+        invalid_string_thrown = true;
+    }
+    require(invalid_string_thrown, "invalid characters in string constructor throw invalid_argument");
+
+    bool overflow_thrown = false;
+    try {
+        static_cast<void>(Int128("170141183460469231731687303715884105728"));
+    } catch (const std::out_of_range&) {
+        overflow_thrown = true;
+    }
+    require(overflow_thrown, "positive overflow in string constructor throws out_of_range");
+
+    bool division_by_zero_thrown = false;
+    try {
+        static_cast<void>(Int128(10) / Int128(0));
+    } catch (const std::domain_error&) {
+        division_by_zero_thrown = true;
+    }
+    require(division_by_zero_thrown, "division by zero throws domain_error");
 
     const Add expr = Const(2) * Variable("x") + Const(1);
     requireEqual(expr.eval({{"x", Int128(100)}}), "201", "expression evaluation");
@@ -87,6 +113,14 @@ int main() {
 
     std::unique_ptr<Expression> cloned(expr.clone());
     requireEqual(cloned->eval({{"x", Int128(7)}}), "15", "clone preserves expression");
+
+    bool expression_division_by_zero_thrown = false;
+    try {
+        static_cast<void>((Variable("x") / Const(0)).eval({{"x", Int128(1)}}));
+    } catch (const std::domain_error&) {
+        expression_division_by_zero_thrown = true;
+    }
+    require(expression_division_by_zero_thrown, "expression division by zero propagates domain_error");
 
     std::ostringstream out;
     out << expr;
