@@ -1,19 +1,17 @@
-PROJECT = matrix
-TEST_PROJECT = test_matrix
+PROJECT = calc_demo
+TEST_PROJECT = test_calc
 
 CXX = g++
-CXXFLAGS = -Werror -Wpedantic -Wall -Isrc
-LDFLAGS = 
-GTEST_LIBS = -lgtest -lgtest_main -pthread
-
-SRC = src/main.cpp src/rational.cpp
-OBJ = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
-
-TEST_SRC = tests/test_matrix.cpp src/rational.cpp
-TEST_OBJ = $(TEST_SRC:%.cpp=$(OBJ_DIR)/%.o)
+CXXFLAGS = -std=c++17 -Wall -Wextra -Wpedantic -Werror -Isrc
 
 BIN_DIR = bin
 OBJ_DIR = obj
+
+SRC = src/main.cpp src/calc.cpp
+OBJ = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
+
+TEST_SRC = tests/test_calc.cpp src/calc.cpp
+TEST_OBJ = $(TEST_SRC:%.cpp=$(OBJ_DIR)/%.o)
 
 .PHONY: all clean cleanall test
 
@@ -28,7 +26,7 @@ $(BIN_DIR)/$(PROJECT): $(OBJ)
 
 $(BIN_DIR)/$(TEST_PROJECT): $(TEST_OBJ)
 	@mkdir -p $(BIN_DIR)
-	$(CXX) -o $@ $^ $(CXXFLAGS) $(GTEST_LIBS)
+	$(CXX) -o $@ $^ $(CXXFLAGS)
 
 $(OBJ_DIR)/%.o: %.cpp
 	@mkdir -p $(dir $@)
